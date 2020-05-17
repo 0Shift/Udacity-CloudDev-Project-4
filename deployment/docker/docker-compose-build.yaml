@@ -3,16 +3,16 @@ services:
   reverseproxy:
     build:
       context: .
-    image: scheele/reverseproxy 
+    image: 0shift/reverseproxy 
   backend_user:
     build:
-      context: ../../udacity-c3-restapi-user
-    image: scheele/udacity-restapi-user
+      context: ../../uda-api-user
+    image: 0shift/uda-api-user
   backend_feed:
     build:
-      context: ../../udacity-c3-restapi-feed  
-    image: scheele/udacity-restapi-feed
+      context: ../../uda-api-feed  
+    image: 0shift/uda-api-feed
   frontend:
     build:
-      context: ../../udacity-c3-frontend  
-    image: scheele/udacity-frontend:local
+      context: ../../uda-frontend  
+    image: 0shift/uda-frontend:local

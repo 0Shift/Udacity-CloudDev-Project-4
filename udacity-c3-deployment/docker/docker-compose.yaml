@@ -11,30 +11,30 @@ services:
   backend-user:
     image: 0shift/udacity-restapi-user
     environment:
-      POSTGRESS_USERNAME: $POSTGRESS_USERNAME
-      POSTGRESS_PASSWORD: $POSTGRESS_PASSWORD 
-      POSTGRESS_DB: $POSTGRESS_DB 
-      POSTGRESS_HOST: $POSTGRESS_HOST 
-      AWS_REGION: $AWS_REGION 
-      AWS_PROFILE: $AWS_PROFILE 
-      AWS_BUCKET: $AWS_BUCKET
-      JWT_SECRET: $JWT_SECRET
+      POSTGRESS_USERNAME: $env:POSTGRES_USERNAME
+      POSTGRESS_PASSWORD: $env:POSTGRES_PASSWORD 
+      POSTGRESS_DB: $env:POSTGRES_DB 
+      POSTGRESS_HOST: $env:POSTGRES_HOST 
+      AWS_REGION: $env:AWS_REGION 
+      AWS_PROFILE: $env:AWS_PROFILE 
+      AWS_BUCKET: $env:AWS_BUCKET
+      JWT_SECRET: $env:JWT_SECRET
       URL: "http://localhost:8100"
   backend-feed:
     image: 0shift/udacity-restapi-feed
     volumes:
       - $HOME/.aws:/root/.aws
     environment:
-      POSTGRESS_USERNAME: $POSTGRESS_USERNAME
-      POSTGRESS_PASSWORD: $POSTGRESS_PASSWORD 
-      POSTGRESS_DB: $POSTGRESS_DB 
-      POSTGRESS_HOST: $POSTGRESS_HOST 
-      AWS_REGION: $AWS_REGION 
-      AWS_PROFILE: $AWS_PROFILE 
-      AWS_BUCKET: $AWS_BUCKET
-      JWT_SECRET: $JWT_SECRET
+      POSTGRESS_USERNAME: $env:POSTGRES_USERNAME
+      POSTGRESS_PASSWORD: $env:POSTGRES_PASSWORD 
+      POSTGRESS_DB: $env:POSTGRES_DB 
+      POSTGRESS_HOST: $env:POSTGRES_HOST 
+      AWS_REGION: $env:AWS_REGION 
+      AWS_PROFILE: $env:AWS_PROFILE 
+      AWS_BUCKET: $env:AWS_BUCKET
+      JWT_SECRET: $env:JWT_SECRET
       URL: "http://localhost:8100"
   frontend:
-    image: 0shift/udacity-frontend:local
+    image: 0shift/udacity-frontend
     ports:
       - "8100:80"

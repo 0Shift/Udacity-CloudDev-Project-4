@@ -1,0 +1,18 @@
+version: "3"
+services:
+  reverseproxy:
+    build:
+      context: .
+    image: sudkul/reverseproxy 
+  backend_user:
+    build:
+      context: ../../udagram-api-user
+    image: 0shift/uda-api-user
+  backend_feed:
+    build:
+      context: ../../udagram-api-feed  
+    image: 0shift/uda-api-feed
+  frontend:
+    build:
+      context: ../../udagram-frontend  
+    image: 0shift/uda-frontend:local

@@ -1,0 +1,40 @@
+version: "3"
+services:
+  reverseproxy:
+      image: 0shift/reverseproxy
+      ports:
+          - 8080:8080
+      restart: always
+      depends_on:
+        - backend-user
+        - backend-feed     
+  backend-user:
+    image: 0shift/udacity-restapi-user
+    environment:
+      POSTGRESS_USERNAME: $env:POSTGRES_USERNAME
+      POSTGRESS_PASSWORD: $env:POSTGRES_PASSWORD 
+      POSTGRESS_DB: $env:POSTGRES_DB 
+      POSTGRESS_HOST: $env:POSTGRES_HOST 
+      AWS_REGION: $env:AWS_REGION 
+      AWS_PROFILE: $env:AWS_PROFILE 
+      AWS_BUCKET: $env:AWS_BUCKET
+      JWT_SECRET: $env:JWT_SECRET
+      URL: "http://localhost:8100"
+  backend-feed:
+    image: 0shift/udacity-restapi-feed
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRESS_USERNAME: $env:POSTGRES_USERNAME
+      POSTGRESS_PASSWORD: $env:POSTGRES_PASSWORD 
+      POSTGRESS_DB: $env:POSTGRES_DB 
+      POSTGRESS_HOST: $env:POSTGRES_HOST 
+      AWS_REGION: $env:AWS_REGION 
+      AWS_PROFILE: $env:AWS_PROFILE 
+      AWS_BUCKET: $env:AWS_BUCKET
+      JWT_SECRET: $env:JWT_SECRET
+      URL: "http://localhost:8100"
+  frontend:
+    image: 0shift/udacity-frontend
+    ports:
+      - "8100:80"
